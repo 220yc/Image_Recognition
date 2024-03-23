@@ -48,16 +48,16 @@ Contrast Limited Adaptive Histogram Equalization (CLAHE) is achieved by controll
 ![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/b2eb2d9f-6a3c-462a-8fbb-cb995fc423cb)
 
 Here, P is the threshold value and L is the value that is scaled proportionally above P. This processing helps to effectively control the contrast of the image while suppressing noise generation.
---------------------------------------------------------------------------  
+  
 To demonstrate the effects of contrast stretching, histogram equalization, and contrast-limited adaptive histogram equalization, two construction site images were selected for experimentation in this study, as shown below.
 ![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/ac2bddf7-d47b-46fd-bf08-66a0587c8778)
 
 It is evident that the images processed using these three preprocessing techniques exhibit clearer and higher contrast visually, which will aid in the subsequent detection tasks.
 
 # Vertical Guardrail Detection Model
-The dataset used in this study consists of images captured by mobile phones at construction sites, specifically focusing on the edges of steel decks with safety guardrails. The dataset comprises a total of 162 images with safety guardrail along the edges. The dataset is divided into a 60% training set and a 40% testing set, following a 6:4 ratio, for the purpose of training and evaluating the guardrail detection model.
+![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/dfff1807-c723-48de-be16-0d930690528b)  
 
-![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/dfff1807-c723-48de-be16-0d930690528b)
+The dataset used in this study consists of images captured by mobile phones at construction sites, specifically focusing on the edges of steel decks with safety guardrails. The dataset comprises a total of 162 images with safety guardrail along the edges. The dataset is divided into a 60% training set and a 40% testing set, following a 6:4 ratio, for the purpose of training and evaluating the guardrail detection model.
 
 ![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/39c979eb-277b-43de-b0e4-92c649f7dba8)  
 
@@ -70,17 +70,16 @@ To address this issue, this study adopts a multi-box annotation approach within 
 
 Steel deck Edge Direction: The purpose of detecting the edges of steel decks is not only to locate them but also to determine the inclination angle of the horizontal guardrail. Therefore, among the predicted bounding boxes in the detected small regions, it is necessary to identify the line segments representing the edges of the steel decks. In this study, the method is based on drawing edge line segments using the coordinates of the predicted bounding box centers. Specifically, threshold values are set based on the angles and distances of line segments formed by pairs of adjacent points. Once a line segment has been drawn, it will no longer be considered for subsequent line segment drawing. When line segments that meet the threshold criteria are detected, they are drawn and recorded.  
 
-![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/5db21872-ecb9-4250-9b3a-b482d592b59d)
-
+<div align=center><img src="https://github.com/220yc/Construction-Site-Safety/assets/91858697/5db21872-ecb9-4250-9b3a-b482d592b59d" width="500" height="350"/></div>
 
 # Perspective Transformation
 To achieve perspective transformation of the horizontal safety guardrail, we use the detected results of the angles of the steel bearing deck edges and the vertical guardrail.   
 Firstly, we determine the angles of the predicted steel bearing deck edges and then perform perspective transformation.   
 Perspective transformation requires four points, so we select the vertical guardrail on both sides of the predicted steel bearing deck edges. We take the coordinates of the top and bottom of the leftmost vertical guardrail, and the coordinates of the top and bottom of the rightmost vertical guardrail (shown as red dots), and substitute them into the following formula:  
-![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/807a6060-11cc-42c9-ad96-62926d526711)  
-![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/ab641ba8-806e-4ea6-bd82-d6221044697d)
-![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/fc2daaa3-6a69-4495-8991-46dee8ff1884)  
 
+<div align=center><img src="https://github.com/220yc/Construction-Site-Safety/assets/91858697/807a6060-11cc-42c9-ad96-62926d526711" width="400" height="70"/></div>
+<div align=center><img src="https://github.com/220yc/Construction-Site-Safety/assets/91858697/ab641ba8-806e-4ea6-bd82-d6221044697d" width="900" height="300"/></div>
+<div align=center><img src="https://github.com/220yc/Construction-Site-Safety/assets/91858697/fc2daaa3-6a69-4495-8991-46dee8ff1884" width="400" height="300"/></div>
 # Horizontal Guardrail Detection Model
 This study utilizes the YOLOv4 model for detecting vertical and horizontal safety guardrail. Firstly, the vertical guardrail are detected, and then the steel bearing deck edges are detected to obtain the direction parallel to the horizontal guardrail. The vertical guardrail are compared with the steel bearing deck edges, and the image is cropped accordingly. Then, perspective transformation is applied based on the angle of the steel bearing deck edges to correct the guardrail image. Finally, the detection of horizontal safety guardrail is performed to remove unnecessary background and focus on the target area, thus improving the detection accuracy.  
 
