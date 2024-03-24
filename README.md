@@ -83,4 +83,17 @@ Perspective transformation requires four points, so we select the vertical guard
 # Horizontal Guardrail Detection Model
 This study utilizes the YOLOv4 model for detecting vertical and horizontal safety guardrail. Firstly, the vertical guardrail are detected, and then the steel bearing deck edges are detected to obtain the direction parallel to the horizontal guardrail. The vertical guardrail are compared with the steel bearing deck edges, and the image is cropped accordingly. Then, perspective transformation is applied based on the angle of the steel bearing deck edges to correct the guardrail image. Finally, the detection of horizontal safety guardrail is performed to remove unnecessary background and focus on the target area, thus improving the detection accuracy.  
 
+Through this series of detections, if the horizontal guardrail between the vertical posts are detected, it ensures the proper installation of the guardrail along the steel bearing deck edges.  
 
+![image](https://github.com/220yc/Construction-Site-Safety/assets/91858697/b8e568d5-e6a3-4d0f-8c81-607e387dca6b)  
+
+# Expected results
+1. The innovative application of image preprocessing can effectively highlight the features of safety guardrail and steel bearing deck edges, considering factors such as occlusion during photography, lighting variations, and different heights or angles of structures. This improves the accuracy of the detection model.
+
+2. The introduction of separate detection models for vertical and horizontal guardrail allows for more effective handling of complex scenes, enhancing detection accuracy, and improving safety on construction sites.
+
+3. The perspective transformation and correction method for steel bearing deck edges can correct images, focus on the target area, and more accurately rectify any angle and perspective distortions that may exist in the images. This improves the overall detection accuracy and plays a crucial role in adapting to variations in different construction site conditions.
+
+4. Through a series of detections, the presence of horizontal guardrail between vertical posts is determined, ensuring the proper installation of guardrail along the steel bearing deck edges. This helps to ensure the completeness of the guardrail system on construction sites.
+
+# Website
