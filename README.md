@@ -96,5 +96,5 @@ Through this series of detections, if the horizontal guardrail between the verti
 
 4. Through a series of detections, the presence of horizontal guardrail between vertical posts is determined, ensuring the proper installation of guardrail along the steel bearing deck edges. This helps to ensure the completeness of the guardrail system on construction sites.
 
-# Website
-TO DO
+# SET UP ON Website
+ABOUT TO DO
